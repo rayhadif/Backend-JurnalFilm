@@ -7,8 +7,7 @@ const userRouter = require('./router/router')
 const { Client } = require('pg');
 const bcrypt = require('bcrypt');
 const db = require('./db.config/db.config')
-require('dotenv').config();
-KEY = process.env.KEY
+require('dotenv').config()
 
 db.connect((err) =>{
     if (err) {
@@ -36,5 +35,5 @@ app.get('/', async (req, res) => {
 });
 
 
-PORT = process.env.PORT || 3000
+PORT = process.env.PORT || 1009
 app.listen(PORT, () => {console.log(`Application is running on ${PORT}!! `)})
