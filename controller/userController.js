@@ -15,7 +15,7 @@ const register = async(req, res, next) => {
     const hash = await bcrypt.hash(password,10);
     // 8. Silahkan coding agar pengguna bisa menyimpan semua data yang diinputkan ke dalam database
     
-        await db.query(`INSERT INTO unhan_modul_17 VALUES(DEFAULT, $1, $2, $3)`, [username,email,hash])
+        await db.query(`INSERT INTO users VALUES(DEFAULT, $1, $2, $3)`, [username,email,hash])
         res.send("Data Ditambahkan ke Database")
     } catch (err){
         res.send('Inputan Tidak Valid')
@@ -28,7 +28,7 @@ const login = async(req, res, next) => {
     // 9. komparasi antara password yang diinput oleh pengguna dan password yang ada didatabase
     const { email, password } = req.body;
     try {
-    const data = await db.query(`SELECT * FROM unhan_modul_17 WHERE email= $1;`, [email]) //Verifying if the user exists in the database
+    const data = await db.query(`SELECT * FROM users WHERE email= $1;`, [email]) //Verifying if the user exists in the database
     const user = data.rows;
     if (user.length === 0) {
     res.status(400).json({
@@ -96,7 +96,7 @@ const verify = async(req, res, next) => {
     try {
         // 13. membuat verify
         const email= req.verified.email;
-        const user = await db.query(`SELECT * FROM unhan_modul_17 WHERE email=$1;`, [email])
+        const user = await db.query(`SELECT * FROM users WHERE email=$1;`, [email])
         return res.status(200).send({
             id_users: user.rows[0].id_users,
             username: user.rows[0].username,
