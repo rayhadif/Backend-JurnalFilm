@@ -23,6 +23,10 @@ const register = async(req, res, next) => {
 
 }
 
+const comment = async(req,res, next) => {
+    
+}
+
 const login = async(req, res, next) => {
     
     // 9. komparasi antara password yang diinput oleh pengguna dan password yang ada didatabase
